@@ -106,6 +106,6 @@ const readTransactionFees = async (id) => {
     `\n💲Inclusion Cost: ${inclusionEffort}, 💲Execution Cost: ${executionEffort}`
   );
   console.log("💲Final Cost:", cost * Math.pow(10, 8), "\n");
-  console.log("Thank your for using our services! 👋\n");
+  console.log("Thank you for using our services! 👋\n");
   printLine();
 })();
