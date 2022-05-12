@@ -1,7 +1,7 @@
 {
-  "name": "gas-estimation-tool",
+  "name": "flow-get",
   "version": "0.1.0",
-  "description": "Cadence Transaction Gas Estimation cost",
+  "description": "Flow GET - Gas Estimation cost",
   "main": "index.js",
   "scripts": {
     "example": "node index.js a8d82b7d2b56d113834d4087d880cb8afa039e584ba87f79a2d452492b589857"
@@ -10,6 +10,9 @@
     "cadence",
     "gas"
   ],
+  "bin": {
+    "flow-get": "index.js"
+  },
   "author": "Max Daunarovich",
   "license": "ISC",
   "dependencies": {
