@@ -52,8 +52,6 @@ const readTransactionFees = async (id) => {
   const query = gql`
     query TransactionEventsSectionQuery(
       $id: ID!
-      $eventTypeFilter: ID
-      $first: Int
     ) {
       checkTransaction(id: $id) {
         transaction {
@@ -62,7 +60,7 @@ const readTransactionFees = async (id) => {
             __typename
           }
           eventCount
-          events(first: $first, typeId: $eventTypeFilter) {
+          events(typeId: "A.912d5440f7e3769e.FlowFees.FeesDeducted") {
             edges {
               node {
                 index
@@ -84,7 +82,7 @@ const readTransactionFees = async (id) => {
     }
   `;
   const variables = {
-    id,
+    id
   };
   console.log("✨ FlowScan: Fetching transaction data...");
   const data = await request(endpoint, query, variables);
