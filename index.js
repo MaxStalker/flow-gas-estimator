@@ -1,5 +1,11 @@
 #!/usr/bin/env node
-const { config, tx, query } = require("@onflow/fcl");
+const {
+  config,
+  query,
+  send,
+  getTransactionStatus,
+  decode,
+} = require("@onflow/fcl");
 const yargs = require("yargs/yargs");
 
 const printLine = () =>
@@ -10,16 +16,25 @@ const printLine = () =>
 const getTxData = async (id, timeout) => {
   return new Promise(async (resolve, reject) => {
     const timeoutReference = setTimeout(() => {
-      reject();
+      reject("fetch timeout");
     }, timeout);
-    const txData = await tx(id).onceSealed();
+    const txData = await send([getTransactionStatus(id)]).then(decode);
+
+    if (!txData.events) {
+      reject('"events" field is null');
+    }
+
     clearTimeout(timeoutReference);
     resolve(txData);
   }).catch((reason) => {
     printLine();
-    console.error("Timeout reached :(");
-    console.log("Try to increase timeout with -t flag.");
-    console.log("Or maybe you've specified wrong transaction id");
+    console.log("Reason:", reason);
+    if (reason === "fetch timeout") {
+      console.error("Timeout reached :(");
+      console.log("Try to increase timeout with -t flag.");
+    } else {
+      console.log("Wrong or failed transaction. Try another id");
+    }
     printLine();
     process.exit();
   });
@@ -44,6 +59,7 @@ const calculateCosts = async (network, inclusionEffort, executionEffort) => {
 		}
 	`;
 
+  console.log({ inclusionEffort, executionEffort });
   const args = (arg, t) => [
     arg(inclusionEffort, t.UFix64),
     arg(executionEffort, t.UFix64),
@@ -65,7 +81,6 @@ const extractTxParams = (txData) => {
 (async () => {
   printLine();
   console.log("\n    ⭐ Welcome to Gas Cost Estimator 3000! ⭐   \n");
-
 
   const defaultTimeout = 5000;
   const argv = yargs(process.argv.slice(2))
@@ -110,13 +125,9 @@ const extractTxParams = (txData) => {
   const txData = await getTxData(id, timeout);
 
   const { inclusionEffort, executionEffort } = extractTxParams(txData);
-  const [cost] = await calculateCosts(
-    network,
-    inclusionEffort,
-    executionEffort
-  );
+  const cost = await calculateCosts(network, inclusionEffort, executionEffort);
   console.log(
-    `\n💲Inclusion Cost: ${inclusionEffort}, 💲Execution Cost: ${executionEffort}`
+    `\n💲Inclusion Effort: ${inclusionEffort}, 💲Execution Effort: ${executionEffort}`
   );
   console.log("💲Final Cost:", cost * Math.pow(10, 8), "\n");
   console.log("Thank you for using our services! 👋\n");

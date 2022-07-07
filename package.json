@@ -1,10 +1,12 @@
 {
   "name": "flow-get",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "repository": "https://github.com/MaxStalker/flow-gas-estimator",
   "description": "Flow GET - Gas Estimation cost",
   "main": "index.js",
   "scripts": {
+    "good-tx": "node index.js 80e6ec4cb7072d349708227e551ca43d32cd5d59a7482528aea1b760cd3e6986",
+    "failing-tx": "node index.js f01f0b537722a3e52be7b9d634c393afa1cb8b22692aaa5914fffdff5a10f131",
     "example-testnet": "node index.js b695684f7c1cf038ea4bddf69f6bc64ba7a18a173367cdc3b62712236d272051 -n testnet",
     "example-batch-mint": "node index.js 37615077314aef277859e90b3f80ce0a4d976d88eaa20b64cbcb4b04b9822564"
   },
