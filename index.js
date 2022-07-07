@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { config, tx, query } = require("@onflow/fcl");
 const yargs = require("yargs/yargs");
 
