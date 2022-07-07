@@ -1,6 +1,7 @@
 {
   "name": "flow-get",
   "version": "0.1.4",
+  "repository": "https://github.com/MaxStalker/flow-gas-estimator",
   "description": "Flow GET - Gas Estimation cost",
   "main": "base.js",
   "scripts": {
