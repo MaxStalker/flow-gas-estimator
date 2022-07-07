@@ -1,6 +1,6 @@
 {
   "name": "flow-get",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Flow GET - Gas Estimation cost",
   "main": "base.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "gas"
   ],
   "bin": {
-    "flow-get": "base.js"
+    "flow-get": "index.js"
   },
   "author": "Max Daunarovich",
   "license": "ISC",
