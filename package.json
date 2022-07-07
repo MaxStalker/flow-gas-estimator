@@ -1,12 +1,12 @@
 {
   "name": "flow-get",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "repository": "https://github.com/MaxStalker/flow-gas-estimator",
   "description": "Flow GET - Gas Estimation cost",
-  "main": "base.js",
+  "main": "index.js",
   "scripts": {
-    "example-small": "node base.js a8d82b7d2b56d113834d4087d880cb8afa039e584ba87f79a2d452492b589857",
-    "example-batch-mint": "node base.js 71c2164e26187105683feab7394bab2a3f6f8960787d7aabdcad3687e6f03b2b"
+    "example-small": "node index.js a8d82b7d2b56d113834d4087d880cb8afa039e584ba87f79a2d452492b589857",
+    "example-batch-mint": "node index.js 71c2164e26187105683feab7394bab2a3f6f8960787d7aabdcad3687e6f03b2b"
   },
   "keywords": [
     "cadence",
