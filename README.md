@@ -11,6 +11,10 @@ This tool allows you to estimate required gas to process transaction on Flow Tes
 ### Via npx
 - npx flow-get {txId}
 
+#### Options
+- *-n* or *--network* - specify network `[mainnet, testnet]`
+- *-t* or *--timeout* - timeout for transaction fetching (in ms). Default `3000ms`
+- *-h* - usage help
+
 ## Tools Used
-- Flow Cadut - https://github.com/onflow/flow-cadut
-- FlowScan Testnet API - https://testnet.flowscan.org/
+- FCL JS - https://github.com/onflow/fcl-js
